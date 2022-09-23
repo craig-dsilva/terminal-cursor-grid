@@ -1,0 +1,26 @@
+{
+  "name": "terminal-cursor-grid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craig-dsilva/terminal-cursor-grid.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craig-dsilva/terminal-cursor-grid/issues"
+  },
+  "homepage": "https://github.com/craig-dsilva/terminal-cursor-grid#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "prompt": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/prompt": "^1.1.3"
+  }
+}
