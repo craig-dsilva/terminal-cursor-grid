@@ -1,17 +1,10 @@
 import prompt from 'prompt';
 
-prompt.start({ noHandleSIGINT: false });
-
-process.on('SIGINT', function () {
-    console.log("This will execute when you hit CTRL+C");
-    process.exit();
-});
-
 const promptsAllowed = ['u', 'd', 'l', 'r', 'p', 'e'];
 
 const promptSchema = {
     properties: {
-        input: {
+        direction: {
             description: 'Provide an input',
             enum: promptsAllowed,
             message: 'Unknown input. Try again.',
@@ -20,28 +13,46 @@ const promptSchema = {
     }
 }
 
-const arr = [['', '', ''], ['', '', ''], ['', '', '']];
+const arr: string[][] = [];
+for (let i = 0; i < 10; i++) {
+    arr[i] = []
+    for (let j = 0; j < 10; j++) {
+        arr[i][j] = '';
+    }
+}
 const POS = { x: 0, y: 0 };
 
-arr[POS.y][POS.x] = 'C';
+let running = true;
 
-console.log(arr);
-
-prompt.get(promptSchema, (err, result) => {
+const moveCursor = async () => {
+    const input = await prompt.get(promptSchema);
     arr[POS.y][POS.x] = '';
-    const direction = result.input;
-    if (direction === 'u') {
+    if (input.direction === 'u' && POS.y > 0) {
         POS.y -= 1;
     }
-    if (direction === 'd') {
+    if (input.direction === 'd' && POS.y < 9) {
         POS.y += 1;
     }
-    if (direction === 'l') {
+    if (input.direction === 'l' && POS.x > 0) {
         POS.x -= 1;
     }
-    if (direction === 'r') {
+    if (input.direction === 'r' && POS.x < 9) {
         POS.x += 1;
     }
     arr[POS.y][POS.x] = 'C';
-    console.log(arr);
-});
+    if (input.direction === 'p') {
+        console.log(arr)
+    }
+    if (input.direction === 'e') {
+        running = false
+    }
+
+}
+
+const drawBoard = async () => {
+    do {
+        await moveCursor();
+    } while (running)
+}
+
+drawBoard();
