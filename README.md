@@ -3,7 +3,7 @@
 ## How to install
 
 1. Run 'npm install' in the terminal
-2. Run 'tsc' to compile the code to JavaScript
+2. Run 'npm run build' to compile the code to JavaScript
 3. Run 'npm start' to start the application
 
 ## How to use
