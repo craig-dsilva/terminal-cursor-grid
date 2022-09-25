@@ -63,10 +63,10 @@ const boardControl = async () => {
             console.log(`
         ${arr[i].map(y => {
                 if (y === 'C') {
-                    return chalk.bgGray(" ")
+                    return chalk.bgWhite(" ")
                 }
                 else {
-                    return chalk.bgBlack(" ")
+                    return chalk.bgGray(" ")
                 }
             }).join(" ")
                 }
